@@ -9,6 +9,5 @@ if [[ -f "daemon.log" ]]; then
     python3 daemon.py
 else
     # otherwise we need to run installation
-    echo "ran!"
-    # ./run.sh
+    ./run.sh
 fi
