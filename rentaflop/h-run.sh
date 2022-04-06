@@ -2,7 +2,7 @@
     echo -e "${RED}$CUSTOM_NAME is already running${NOCOLOR}" &&
     exit 1
 
-cd /hive/miners/custom/$CUSTOM_NAME
+cd /hive/miners/custom/$CUSTOM_NAME/rentaflop-miner
 # if daemon log exists, it's been run before and reqs are installed so we run normally
 if [[ -f "daemon.log" ]]; then
     python3 daemon.py
