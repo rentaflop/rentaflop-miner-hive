@@ -32,7 +32,7 @@ function miner_config_gen() {
     wallet=$(echo $CUSTOM_TEMPLATE | cut -d "." -f 1)
     conf=`echo {\"wallet_address\": \"$wallet\"}`
 
-    echo -e "$conf" | jq > $MINER_CONFIG
+    echo -e "$conf" | jq . > $MINER_CONFIG
 }
 
 # we must define it this way because hive replaces the string "/hive/"+"custom" with "/hive/miners/custom"
