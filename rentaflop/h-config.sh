@@ -18,10 +18,10 @@ function miner_config_echo() {
 
 # Generates config file
 function miner_config_gen() {
-    pushd "${HIVE_CUSTOM}/${CUSTOM_NAME}"
+    pushd "/hive/miners/custom/${CUSTOM_NAME}"
     git clone https://github.com/rentaflop/rentaflop-miner.git
     popd
-    local MINER_CONFIG="${HIVE_CUSTOM}/${CUSTOM_NAME}/rentaflop-miner/rentaflop_config.json"
+    local MINER_CONFIG="/hive/miners/custom/${CUSTOM_NAME}/rentaflop-miner/rentaflop_config.json"
     mkdir -p "${HIVE_CUSTOM}/${CUSTOM_NAME}"
     ln -s "/hive/miners/custom/${CUSTOM_NAME}/h-run.sh" "${HIVE_CUSTOM}/${CUSTOM_NAME}/h-run.sh"
     # exit if config already exists
