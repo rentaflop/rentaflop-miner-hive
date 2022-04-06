@@ -13,15 +13,17 @@ function miner_fork() {
 function miner_config_echo() {
     export MINER_FORK=`miner_fork`
     local MINER_VER=`miner_ver`
-    miner_echo_config_file "/hive/custom/${CUSTOM_NAME}/rentaflop-miner/rentaflop_config.json"
+    miner_echo_config_file "${HIVE_CUSTOM}/${CUSTOM_NAME}/rentaflop-miner/rentaflop_config.json"
 }
 
 # Generates config file
 function miner_config_gen() {
+    pushd "${HIVE_CUSTOM}/${CUSTOM_NAME}"
     git clone https://github.com/rentaflop/rentaflop-miner.git
-    local MINER_CONFIG="/hive/custom/${CUSTOM_NAME}/rentaflop-miner/rentaflop_config.json"
-    mkdir -p "/hive/custom/${CUSTOM_NAME}"
-    ln -s "/hive/miners/custom/${CUSTOM_NAME}/h-run.sh" "/hive/custom/${CUSTOM_NAME}/h-run.sh"
+    popd
+    local MINER_CONFIG="${HIVE_CUSTOM}/${CUSTOM_NAME}/rentaflop-miner/rentaflop_config.json"
+    mkdir -p "${HIVE_CUSTOM}/${CUSTOM_NAME}"
+    ln -s "/hive/miners/custom/${CUSTOM_NAME}/h-run.sh" "${HIVE_CUSTOM}/${CUSTOM_NAME}/h-run.sh"
     # exit if config already exists
     if [[ -f "$MINER_CONFIG" ]]; then
 	exit 0
@@ -33,4 +35,7 @@ function miner_config_gen() {
     echo -e "$conf" | jq > $MINER_CONFIG
 }
 
+# we must define it this way because hive replaces the string "/hive/"+"custom" with "/hive/miners/custom"
+HIVE_CUSTOM="/hive/"
+HIVE_CUSTOM+="custom"
 miner_config_gen
