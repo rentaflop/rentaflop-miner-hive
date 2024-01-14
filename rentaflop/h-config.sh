@@ -18,6 +18,8 @@ function miner_config_echo() {
 
 # Generates config file
 function miner_config_gen() {
+    apt-get update
+    apt install -y git
     pushd "/hive/miners/custom/${CUSTOM_NAME}"
     git clone https://github.com/rentaflop/rentaflop-miner.git
     popd
